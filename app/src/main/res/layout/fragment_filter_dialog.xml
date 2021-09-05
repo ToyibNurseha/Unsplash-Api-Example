@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/_16sdp"
+    android:padding="@dimen/_16sdp">
+
+    <TextView
+        android:id="@+id/txtColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/rgColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/rbAnyColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtColor">
+
+        <RadioButton
+            android:id="@+id/rbAnyColor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/any_color" />
+
+        <RadioButton
+            android:id="@+id/rbBlackAndWhite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/black_and_white" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvOrientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="@string/orientation"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rgColor" />
+
+    <RadioGroup
+        android:id="@+id/rgOrientation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/rbAnyLandscape"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOrientation">
+
+        <RadioButton
+            android:id="@+id/rbAnyLandscape"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/any" />
+
+        <RadioButton
+            android:id="@+id/rbPortrait"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/landscape" />
+
+        <RadioButton
+            android:id="@+id/rbLandscape"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/portrait" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rgOrientation">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            app:backgroundTint="@android:color/holo_red_dark"
+            app:cornerRadius="10dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="@string/clear"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/black"
+            app:cornerRadius="10dp"
+            app:layout_constraintStart_toEndOf="@id/btnCancel"
+            app:layout_constraintTop_toBottomOf="@id/rgOrientation" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnApply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:backgroundTint="@color/colorPrimary"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="@string/apply"
+            android:textColor="@color/white"
+            app:cornerRadius="10dp"
+            app:layout_constraintStart_toEndOf="@id/btnClear"
+            app:layout_constraintTop_toBottomOf="@id/rgOrientation" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

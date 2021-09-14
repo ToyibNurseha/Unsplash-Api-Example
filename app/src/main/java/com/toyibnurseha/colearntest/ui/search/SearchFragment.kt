@@ -90,6 +90,10 @@ class SearchFragment : Fragment(), FilterListener {
                 }
 
             }
+
+            R.id.favoriteMenu -> {
+                findNavController().navigate(R.id.action_searchFragment_to_favoriteFragment)
+            }
         }
         return  super.onOptionsItemSelected(item)
     }

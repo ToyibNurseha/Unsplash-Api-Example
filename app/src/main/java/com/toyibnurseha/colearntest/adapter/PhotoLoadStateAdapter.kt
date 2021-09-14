@@ -20,7 +20,6 @@ class PhotoLoadStateAdapter(private val retry: () -> Unit) :
 
     override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) {
         holder.bind(loadState)
-
     }
 
     inner class LoadStateViewHolder(

@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_filter"
         android:title="Filter"
         app:showAsAction="ifRoom|collapseActionView"/>
+
+    <item android:id="@+id/favoriteMenu"
+        android:icon="@drawable/ic_favorite_white"
+        android:title="Favorite"
+        app:showAsAction="ifRoom|collapseActionView"/>
 </menu>

@@ -5,19 +5,19 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MyPhoto(
-    var id: String,
-    var desc: String?,
-    var urls: PhotoUrls,
-    val user: User
+    var id: String = "",
+    var desc: String? = "",
+    var urls: PhotoUrls? = null,
+    val user: User? = null
 ) : Parcelable {
 
     @Parcelize
     data class PhotoUrls(
-        var raw: String,
-        var full: String,
-        var regular: String,
-        var thumb: String,
-        var small: String
+        var raw: String = "",
+        var full: String = "",
+        var regular: String = "",
+        var thumb: String = "",
+        var small: String = ""
     ) : Parcelable
 
     @Parcelize

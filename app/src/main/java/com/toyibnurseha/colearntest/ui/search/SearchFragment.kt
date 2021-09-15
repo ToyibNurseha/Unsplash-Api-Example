@@ -29,7 +29,7 @@ class SearchFragment : Fragment(), FilterListener {
     private val viewModel by viewModels<MainViewModel>()
     private lateinit var searchAdapter: SearchAdapter
 
-    private var searchQuery = ""
+    private var searchQuery : String? = null
     private var colorFilter : String? = null
     private var orientationFilter : String? = null
 
@@ -44,7 +44,6 @@ class SearchFragment : Fragment(), FilterListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).supportActionBar?.title = "Unsplash"
         (activity as MainActivity).supportActionBar?.title = "Unsplash"
         searchAdapter = SearchAdapter()
         searchQuery = "Football"
@@ -65,9 +64,11 @@ class SearchFragment : Fragment(), FilterListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
                     searchQuery = query
-                    binding.rvPhotosSearch.scrollToPosition(0)
-                    viewModel.getPhotos(searchQuery, colorFilter, orientationFilter)
-                    searchView.clearFocus()
+                    searchQuery?.let {
+                        binding.rvPhotosSearch.scrollToPosition(0)
+                        viewModel.getPhotos(it, colorFilter, orientationFilter)
+                        searchView.clearFocus()
+                    }
                 }
                 return true
             }
@@ -99,8 +100,10 @@ class SearchFragment : Fragment(), FilterListener {
     }
 
     private fun callRequest() {
-        viewModel.getPhotos(searchQuery, colorFilter, orientationFilter).observe(viewLifecycleOwner) {
-            searchAdapter.submitData(this.lifecycle, it)
+        searchQuery?.let {
+            viewModel.getPhotos(it, colorFilter, orientationFilter).observe(viewLifecycleOwner) {
+                searchAdapter.submitData(this.lifecycle, it)
+            }
         }
     }
 
@@ -110,8 +113,8 @@ class SearchFragment : Fragment(), FilterListener {
                 header = PhotoLoadStateAdapter { searchAdapter.retry() },
                 footer = PhotoLoadStateAdapter { searchAdapter.retry() }
             )
+            itemAnimator = null
             val layout = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            layout.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
             layoutManager = layout
         }
 

@@ -14,23 +14,28 @@
             app:destination="@id/detailFragment" />
         <action
             android:id="@+id/action_searchFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
+            app:destination="@id/favoriteFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.toyibnurseha.colearntest.ui.detail.DetailFragment"
-        tools:layout="@layout/fragment_detail" >
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="photoData"
+            android:defaultValue="@null"
             app:argType="com.toyibnurseha.colearntest.data.local.MyPhoto"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.toyibnurseha.colearntest.ui.favorite.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
 </navigation>

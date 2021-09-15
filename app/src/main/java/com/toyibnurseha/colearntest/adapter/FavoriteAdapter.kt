@@ -1,5 +1,6 @@
 package com.toyibnurseha.colearntest.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -14,27 +15,29 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.toyibnurseha.colearntest.data.local.MyPhoto
+import com.toyibnurseha.colearntest.data.local.PhotoFavoriteModel
 import com.toyibnurseha.colearntest.databinding.ItemPhotoBinding
 
+class FavoriteAdapter :
+    PagingDataAdapter<PhotoFavoriteModel, FavoriteAdapter.ViewHolder>(DiffCallback) {
 
-class SearchAdapter : PagingDataAdapter<MyPhoto, SearchAdapter.ViewHolder>(DiffCallback) {
+    private var photos = ArrayList<PhotoFavoriteModel>()
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteAdapter.ViewHolder {
         val view = ItemPhotoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: SearchAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavoriteAdapter.ViewHolder, position: Int) {
         val currentItem = getItem(position)
 
         if (currentItem != null)
             holder.bind(currentItem)
     }
 
-
-    inner class ViewHolder(private val binding: ItemPhotoBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(photo: MyPhoto) {
+    inner class ViewHolder(private val binding: ItemPhotoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(photo: PhotoFavoriteModel) {
             with(binding) {
                 itemView.setOnClickListener {
                     listener?.let {
@@ -43,7 +46,7 @@ class SearchAdapter : PagingDataAdapter<MyPhoto, SearchAdapter.ViewHolder>(DiffC
                 }
 
                 Glide.with(itemView.context)
-                    .load(photo.urls?.regular)
+                    .load(photo.urlThumb)
                     .listener(object : RequestListener<Drawable> {
                         override fun onLoadFailed(
                             e: GlideException?,
@@ -74,19 +77,25 @@ class SearchAdapter : PagingDataAdapter<MyPhoto, SearchAdapter.ViewHolder>(DiffC
         }
     }
 
-    private var listener: ((MyPhoto?) -> Unit)? = null
-
-    fun setOnItemClickListener(clickListener: ((MyPhoto?) -> Unit)?) {
-        listener = clickListener
-    }
-
-    object DiffCallback : DiffUtil.ItemCallback<MyPhoto>() {
-        override fun areItemsTheSame(oldItem: MyPhoto, newItem: MyPhoto): Boolean =
+    object DiffCallback : DiffUtil.ItemCallback<PhotoFavoriteModel>() {
+        override fun areItemsTheSame(
+            oldItem: PhotoFavoriteModel,
+            newItem: PhotoFavoriteModel
+        ): Boolean =
             newItem.id == oldItem.id
 
 
-        override fun areContentsTheSame(oldItem: MyPhoto, newItem: MyPhoto): Boolean =
+        override fun areContentsTheSame(
+            oldItem: PhotoFavoriteModel,
+            newItem: PhotoFavoriteModel
+        ): Boolean =
             newItem == oldItem
 
+    }
+
+    private var listener: ((PhotoFavoriteModel?) -> Unit)? = null
+
+    fun setOnItemClickListener(clickListener: ((PhotoFavoriteModel?) -> Unit)?) {
+        listener = clickListener
     }
 }

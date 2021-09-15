@@ -3,11 +3,12 @@ Example of How to Handle an API from [Unsplash.com](https://unsplash.com)
 ## Tech stack & Open-source libraries
 This project is based on MVVM architecture, using following tech-stacks:
 - Jetpack
-    - Navigation Component
-    - Hilt
-    - Paging 3
-    - Lifecycle
-    - View Binding
+  - Navigation Component
+  - Hilt
+  - Paging 3
+  - Lifecycle
+  - View Binding
+  - :new: Room Database
 - Retrofit
 - Glide
 - Coroutines
@@ -15,6 +16,12 @@ This project is based on MVVM architecture, using following tech-stacks:
 - [Shimmer](https://github.com/facebook/shimmer-android)
 - [Downloader](https://github.com/tonyofrancis/Fetch)
 - [Lottie](https://github.com/airbnb/lottie-android)
+
+## New Update
+
+- [x] Ability to add picture to favorite menu
+- [x] Ability to remove picture from favorite menu
+- [x] Show your favorite picture in staggered list
 
 
 ## Screenshots:
